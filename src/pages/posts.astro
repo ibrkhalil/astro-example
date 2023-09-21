@@ -1,0 +1,7 @@
+---
+import { string } from "astro/zod";
+const req = await fetch('https://jsonplaceholder.typicode.com/todos')
+const postsArray = await req.json().then(res => res)
+---
+
+{postsArray.map((post:any) => <a href={'/posts/' + post.id}>{post.title}</a>)}

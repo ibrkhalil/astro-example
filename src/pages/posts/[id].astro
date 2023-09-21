@@ -1,0 +1,18 @@
+---
+export async function getStaticPaths() {
+  const req = await fetch("https://jsonplaceholder.typicode.com/todos");
+  const postsArray = await req.json().then((res) => res);
+  return postsArray.map((post) => ( 
+    {params: { id: post.id }, props: {post}
+  }));
+}
+
+const { id } = Astro.params;
+const { post } = Astro.props;
+---
+
+<div>
+    {console.log(id)}
+  <h1>{post.title}</h1>
+  <h1>{id}</h1>
+</div>
